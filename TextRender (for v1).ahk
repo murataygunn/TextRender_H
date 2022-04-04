@@ -1,4 +1,4 @@
-; Script:    TextRender.ahk
+﻿; Script:    TextRender.ahk
 ; License:   MIT License
 ; Author:    Edison Hua (iseahound)
 ; Github:    https://github.com/iseahound/TextRender
