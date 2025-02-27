@@ -5,7 +5,7 @@
 ; Date:      2024-11-22
 ; Version:   1.9.3
 
-#Requires AutoHotkey v1.1.35+
+#Requires AutoHotkey v1.1.33+
 
 
 ; TextRender() - Display custom text on screen.
@@ -471,8 +471,8 @@ class TextRender {
             ; Changing x, y, w, h to be stationary does not provide a speed boost.
             ; Nor does making the window opaque.
 
-            pptDst := x - this.OffsetLeft << 32 >>> 32 | y - this.OffsetTop << 32
-            pptSrc := x - this.BitmapLeft << 32 >>> 32 | y - this.BitmapTop << 32
+            pptDst := (x - this.OffsetLeft) & 0xFFFFFFFF | ((y - this.OffsetTop) << 32) & 0xFFFFFFFF00000000
+            pptSrc := (x - this.BitmapLeft) & 0xFFFFFFFF | ((y - this.BitmapTop) << 32) & 0xFFFFFFFF00000000
 
             DllCall("UpdateLayeredWindow"
                      ,    "ptr", this.hwnd                ; hWnd
@@ -679,7 +679,7 @@ class TextRender {
             hMon := DllCall("MonitorFromWindow", "ptr", WinExist("A"), "uint", 0, "ptr")
 
          ; Convert the hMonitor to canvas coordinates.
-         if IsSet(hMon) {
+         if (hMon) {
             VarSetCapacity(MIEX, 40 + (32 << !!A_IsUnicode))
             NumPut("uint", 40 + (32 << !!A_IsUnicode), MIEX)
             if !DllCall("GetMonitorInfo", "ptr", hMon, "ptr", &MIEX)
