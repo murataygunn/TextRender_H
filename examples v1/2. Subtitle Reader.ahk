@@ -1,4 +1,4 @@
-﻿#include ..\TextRender (for v1).ahk
+﻿#include ..\TextRenderV1.ahk
 SetBatchLines -1 ; Mandatory for all v1 scripts
 
 srt := "..\media\sample.srt"

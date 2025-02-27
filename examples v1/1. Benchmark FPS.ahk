@@ -1,4 +1,4 @@
-#include ..\TextRender (for v1).ahk
+#include ..\TextRenderV1.ahk
 #MaxThreads 10   ; Controls the maximum number of windows
 SetBatchLines -1 ; Mandatory for all v1 scripts
 
